@@ -11,9 +11,9 @@ env:
   PYTHON_VERSION: 3.11
   NODE_VERSION: 18
   AZURE_LOCATION: "swedencentral"
-  AZURE_RESOURCE_GROUP_NAME: "azure-ml-aug"
-  AZURE_ML_WORKSPACE_NAME: "cats-dogs-aug"
-  AZURE_WEBAPP_NAME: "cats-dogs-aug"
+  AZURE_RESOURCE_GROUP_NAME: "azure-ml-augustin"
+  AZURE_ML_WORKSPACE_NAME: "cats-dogs-augustin"
+  AZURE_WEBAPP_NAME: "cats-dogs-augustin"
   DELETE_WEBAPP: "false"
   DOCKER_API_IMAGE_NAME: "mlopspython-api"
   DOCKER_REPOSITORY: ${{ github.repository_owner }}
