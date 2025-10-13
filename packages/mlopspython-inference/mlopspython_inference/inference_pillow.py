@@ -22,13 +22,27 @@ def load_image(filename: str|BytesIO):
 
 BASE_PATH = Path(__file__).resolve().parent
 
+class IModel():
+    def predict(self, img) -> np.ndarray:
+        pass
 
-class Inference:
-    def __init__(self, logging, model_path: str):
-        self.logger = logging.getLogger(__name__)
+class ModelPillow(IModel):
+    def __init__(self, model_path: str):
         self.model = load_model(model_path)
 
-    def execute(self, filepath:str|BytesIO):
+    def predict(self, img) -> np.ndarray:
+        return self.model.predict(img)
+
+class ModelMock(IModel):
+    def predict(self, img) -> np.ndarray:
+        return np.array([[1, 0, 0]])
+
+class Inference:
+    def __init__(self, logging, model: IModel):
+        self.logger = logging.getLogger(__name__)
+        self.model = load_model(model)
+
+    def execute(self, filepath: str|BytesIO) -> dict:
         img = load_image(filepath)
         result = self.model.predict(img)
         values = [float(result[0][0]), float(result[0][1]), float(result[0][2])]
